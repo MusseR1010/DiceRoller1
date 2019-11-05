@@ -19,12 +19,17 @@ import static android.R.id.input;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView points;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        points = (TextView)findViewById(R.id.currentPoints);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,32 +73,28 @@ public class MainActivity extends AppCompatActivity {
         EditText input;
         input = (EditText) findViewById(R.id.input);
         int inputnumber = Integer.parseInt(input.getText().toString());
-
         if (inputnumber < 1 || inputnumber > 6 ){
             Toast.makeText(this,"Invalid, try again!", Toast.LENGTH_SHORT).show();
-
         }
         else if (inputnumber == number){
-
             Toast.makeText(this,"congratulations", Toast.LENGTH_SHORT).show();
+            int currentPoints = Integer.parseInt(points.getText().toString());
+            currentPoints = currentPoints + 1;
+            points.setText(String.valueOf(currentPoints));
+
         }
 
     }
 
-    public void congratulations (View view) {
 
 
 
 
+    public void roll_the_dice(View view) {
 
 
-
-
-
-        }
-
-    private void showToast(String s) {
     }
+
 
 
 }
