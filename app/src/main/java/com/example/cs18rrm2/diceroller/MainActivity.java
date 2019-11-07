@@ -8,19 +8,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.Random;
-
-import static android.R.id.input;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button showSomething;
     TextView points;
-
+    ArrayList<String> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        showSomething = (Button)findViewById(R.id.letsPlayButton);
+        showSomething.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                roll_the_dice(v);
+            }
+        });
+
         points = (TextView)findViewById(R.id.currentPoints);
+
+        questions = new ArrayList<>();
+        questions.add("If you could go anywhere in the world, where would you go?");
+        questions.add("If you were stranded on a desert island, what three things would you want to take with you?");
+        questions.add("If you could eat only one food for the rest of your life, what would that be?");
+        questions.add("If you won a million dollars, what is the first thing you would buy?");
+        questions.add("If you could spaned the day with one fictional character, who would it be?");
+        questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -86,15 +105,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
     public void roll_the_dice(View view) {
 
+        Random r = new Random ();
+        int index = r.nextInt(6)+1;
+
+        String question = questions.get(index - 1);
+        TextView tv = (TextView) findViewById(R.id.textView2);
+        tv.setText(question);
 
     }
-
-
 
 }
